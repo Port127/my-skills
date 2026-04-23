@@ -1,19 +1,26 @@
 ---
 name: commit-msg
 description: >-
-  分析 git 变更并生成规范的 commit message。自动过滤 AI 供应商文案
-  （Made-with、Cursor、claude、codex 等），输出简洁专业的提交信息。
-  生成后交由用户审查，不自动执行 git commit。
+  分析 git 变更并生成规范的 commit message，自动过滤 AI 供应商文案，输出简洁专业的提交信息。
+  仅当用户明确说出"使用 commit-msg"或"启动 commit-msg"时触发。
+  不适用于任何隐式场景。
 ---
 
 # Git Commit Message Generator
 
 ## 触发约束
 
-此 skill 在以下情况触发：
-- 用户明确请求生成 commit message（如 "生成提交信息"、"commit message"、"写提交说明"、"生成commit"）
-- 用户完成代码变更后询问 "如何提交"
-- 用户手动引用 @commit-msg
+此 skill **仅通过显式调用触发**。
+
+### ⛔ 不触发的场景
+- 用户完成代码变更但未提及 commit-msg
+- 用户提到"提交"、"commit"等通用请求但未提及 commit-msg
+- 用户未显式引用 @commit-msg
+
+### ✅ 触发条件
+必须同时满足：
+1. 用户明确说出"使用 commit-msg"或"启动 commit-msg"，或显式引用 @commit-msg
+2. 用户提供了明确需求或上下文
 
 ---
 

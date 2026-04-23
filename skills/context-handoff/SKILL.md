@@ -1,11 +1,26 @@
 ---
 name: context-handoff
-description: 生成交接文档，序列化当前会话的工作状态、问题、计划，供新会话无缝恢复
-argument-hint: "[--output 路径] [--mode full|brief|plan]"
-arguments: output, mode
+description: >-
+  生成交接文档，序列化当前会话的工作状态、问题、计划，供新会话无缝恢复。
+  仅当用户明确说出"使用 context-handoff"或"启动 context-handoff"时触发。
+  不适用于任何隐式场景。
 ---
 
 # 任务
+
+## 触发约束
+
+此 skill **仅通过显式调用触发**。
+
+### ⛔ 不触发的场景
+- 用户提到"交接"、"保存状态"、"新会话"等但未提及 context-handoff
+- 会话结束前的自动保存或提醒
+- 用户未显式引用 @context-handoff
+
+### ✅ 触发条件
+必须同时满足：
+1. 用户明确说出"使用 context-handoff"或"启动 context-handoff"，或显式引用 @context-handoff
+2. 用户提供了明确需求或上下文
 
 将当前会话的工作状态、已完成的修改、发现的问题、待办事项和后续计划，
 序列化为一篇结构化的 Markdown 文档。
