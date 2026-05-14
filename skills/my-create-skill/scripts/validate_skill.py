@@ -2,6 +2,7 @@
 """validate_skill.py — 校验 SKILL.md 是否符合团队约定。
 
 用法: python scripts/validate_skill.py <path-to-SKILL.md>
+说明: 此脚本位于 skill 目录的 scripts/ 下，相对于 SKILL.md 执行。
 
 返回 0 表示通过，1 表示有错误。
 """
