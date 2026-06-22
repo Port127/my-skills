@@ -1,9 +1,8 @@
 ---
 name: commit-msg
 description: >-
-  分析 git 变更并生成规范的 commit message，自动过滤 AI 供应商文案，输出简洁专业的提交信息。
-  仅当用户明确说出"使用 commit-msg"或"启动 commit-msg"时触发。
-  不适用于任何隐式场景。
+  分析 git 变更并生成规范的 commit message，遵循 Conventional Commits 格式和中文结构化正文。
+  自动过滤 AI 供应商文案。仅当用户明确说出"使用 commit-msg"时触发。
 ---
 
 # Git Commit Message Generator
@@ -21,6 +20,14 @@ description: >-
 必须同时满足：
 1. 用户明确说出"使用 commit-msg"或"启动 commit-msg"，或显式引用 @commit-msg
 2. 用户提供了明确需求或上下文
+
+---
+
+## 语言与沟通规范
+
+- 所有面向用户的回复、分析结论使用简体中文
+- 命令、代码、路径、配置键、API 名称、技术专名保留原文
+- Commit message 的 subject 和 body 必须使用中文（type、scope、代码标识除外）
 
 ---
 
@@ -43,14 +50,24 @@ git diff
 
 ### Phase 2: 生成 Commit Message
 
-遵循 Conventional Commits 规范生成提交信息：
+遵循 Conventional Commits 规范，采用以下格式：
 
 ```
-<type>(<scope>): <subject>
+<type>(<scope>): <中文摘要>
 
-<body>
+背景与目的：
+- <修改原因，可按需省略本节>
 
-<footer>
+主要改动：
+- <具体改动点>
+- <具体改动点>
+
+影响范围：
+- <兼容性、数据或行为影响，可按需省略本节>
+
+验证结果：
+- <执行的命令或检查>
+- <通过结果，或未执行测试的原因>
 ```
 
 **Type 类型**：
@@ -63,14 +80,17 @@ git diff
 - `test`: 测试相关
 - `chore`: 构建/辅助工具变动
 - `ci`: CI 配置变更
+- `skills`: skill 相关变更
 
-**Scope**（可选）：变更影响的模块或范围
+**Scope**（可选）：变更影响的模块或范围，使用英文标识
 
-**Subject**：简短描述（不超过 50 字符，首字母小写，结尾不加句号）
+**中文摘要**：简短描述（不超过 50 字符，结尾不加句号）
 
-**Body**（可选）：详细说明变更原因和影响
-
-**Footer**（可选）：不兼容变更说明或关闭的 Issue
+**强制要求**：
+- 每次提交必须包含正文，禁止只有标题
+- 正文必须包含"主要改动"和"验证结果"
+- "主要改动"必须列出具体内容点，禁止使用"更新代码""修复问题"等笼统描述
+- "验证结果"必须记录执行的测试或检查；未运行测试时必须明确说明原因
 
 ### Phase 3: 清理供应商文案
 
@@ -94,9 +114,9 @@ git diff
 ```markdown
 ## 建议的 Commit Message
 
-```
+\`\`\`
 <生成的完整 commit message>
-```
+\`\`\`
 
 ## 变更摘要
 - 文件 1: 简要说明
@@ -104,9 +124,9 @@ git diff
 
 ---
 请检查以上提交信息，确认后执行：
-```bash
+\`\`\`bash
 git commit -m "<subject>" -m "<body>"
-```
+\`\`\`
 或告诉我需要调整的地方。
 ```
 
@@ -117,8 +137,10 @@ git commit -m "<subject>" -m "<body>"
 - **绝不自动提交**：只生成 commit message，由用户手动执行
 - **必须过滤供应商文案**：这是硬性要求，不得以任何形式保留
 - **遵循 Conventional Commits**：确保提交历史规范统一
-- **简洁优先**：subject 行尽量简洁，细节放在 body 中
-- **中文友好**：如果项目主要使用中文，允许中文 commit message
+- **中文优先**：subject 和 body 使用中文，type/scope/代码标识保留原文
+- **正文必填**：每次提交必须包含正文，禁止只有标题
+- **具体明确**：主要改动必须列出具体内容，禁止笼统描述
+- **验证透明**：必须记录验证结果或说明未测试原因
 - **多文件合并**：如果多个相关文件属于同一逻辑变更，合并为一个 commit
 
 ---
@@ -130,10 +152,21 @@ git commit -m "<subject>" -m "<body>"
 ```
 feat(create-skill): 添加质量校验阶段
 
-Phase 5 新增 quality validation，检查 skill 是否符合规范
-包括触发规则、结构完整性、命名公约等校验项
+背景与目的：
+- 提升生成 skill 的质量，确保符合项目规范
 
-关联: #42
+主要改动：
+- Phase 5 新增 quality validation 阶段
+- 添加触发规则、结构完整性、命名公约等校验项
+- 校验失败时输出详细错误信息
+
+影响范围：
+- 新增 skill 生成流程增加校验步骤
+- 不影响已有 skill
+
+验证结果：
+- 手动测试新建 skill 流程，校验功能正常
+- 测试用例: skills/test-skill/ 创建成功
 ```
 
 ### 示例 2：Bug 修复
@@ -141,8 +174,13 @@ Phase 5 新增 quality validation，检查 skill 是否符合规范
 ```
 fix(task-executor): 修复任务状态不同步问题
 
-当 round 完成后，BUG_TASKS.md 未正确更新状态
-现在确保文档与实际任务状态保持一致
+主要改动：
+- 修复 round 完成后 BUG_TASKS.md 未正确更新状态的 bug
+- 添加状态同步逻辑，确保文档与实际任务状态一致
+
+验证结果：
+- 运行测试用例 `test_sync_status` 通过
+- 手动模拟 round 完成，状态同步正常
 ```
 
 ### 示例 3：重构
@@ -150,6 +188,17 @@ fix(task-executor): 修复任务状态不同步问题
 ```
 refactor: 统一 skill 配置结构
 
-将所有 skill 的 config.json 改为统一的 schema
-移除冗余字段，增加版本控制
+背景与目的：
+- 消除不同 skill 的配置格式差异，便于维护
+
+主要改动：
+- 将所有 skill 的 config.json 改为统一的 schema
+- 移除冗余字段 version、deprecated
+- 增加必填字段校验
+
+影响范围：
+- 所有 skill 的 config.json 需要按新 schema 更新
+
+验证结果：
+- 未执行测试，配置变更无运行时影响
 ```
