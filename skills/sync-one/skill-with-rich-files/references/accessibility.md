@@ -1,6 +1,7 @@
 # Accessibility Checklist
 
 - Every interactive element has a visible keyboard focus state.
+- 
 - A status is conveyed with text or an icon shape as well as color.
 - Form fields have persistent labels and errors are associated with their fields.
 - Icon-only buttons have an accessible name and a useful hit area.

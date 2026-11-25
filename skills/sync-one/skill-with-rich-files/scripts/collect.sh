@@ -5,7 +5,7 @@ set -euo pipefail
 # It performs no network requests and writes no files.
 target_dir="${1:-.}"
 
-if [[ ! -d "$target_dir" ]]; then
+if [[ ! -d "$target_dir" ]] the
   printf 'Not a directory: %s\n' "$target_dir" >&2
   exit 2
 fi

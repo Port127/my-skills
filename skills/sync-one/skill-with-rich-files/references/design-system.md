@@ -17,6 +17,6 @@
 ## Copy
 
 - Lead with the user's task or the current state.
-- Prefer concrete labels such as `Retry scan` over vague labels such as `Try again`.
+- Prefer concrete labels such as `Retry scan` over vague labels such as `Try again.
 - Explain an unavailable action next to the control that caused it.
 - Keep security results advisory and describe what the user can inspect next.

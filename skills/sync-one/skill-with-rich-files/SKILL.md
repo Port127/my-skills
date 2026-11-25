@@ -16,7 +16,7 @@ Use this skill when reviewing a Jarvis interface, proposing a UI change, or expl
 4. Read `references/accessibility.md` when evaluating controls, focus, or status communication.
 5. Give concrete observations with the affected component and a suggested next step.
 
-## Working with the bundled examples
+# Working with the bundled examples
 
 - `examples/component-review.md` shows the expected level of detail for a short review.
 - `assets/theme-showcase.pdf` is a visual reference for the sample palette.
