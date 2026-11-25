@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="180" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
+  <title id="title">Sample Jarvis palette</title>
+  <desc id="desc">Seven labeled color swatches on a light background.</desc>
+  <rect width="720" height="180" rx="16" fill="#F9FAFB"/>
+  <g font-family="Arial, sans-serif" font-size="12" fill="#111827">
+    <g transform="translate(20 20)"><rect width="88" height="88" rx="10" fill="#7C3AED"/><text x="0" y="112">Primary</text><text x="0" y="132">#7C3AED</text></g>
+    <g transform="translate(118 20)"><rect width="88" height="88" rx="10" fill="#06B6D4"/><text x="0" y="112">Cyan</text><text x="0" y="132">#06B6D4</text></g>
+    <g transform="translate(216 20)"><rect width="88" height="88" rx="10" fill="#111827"/><text x="0" y="112">Surface</text><text x="0" y="132">#111827</text></g>
+    <g transform="translate(314 20)"><rect width="88" height="88" rx="10" fill="#1F2937"/><text x="0" y="112">Card</text><text x="0" y="132">#1F2937</text></g>
+    <g transform="translate(412 20)"><rect width="88" height="88" rx="10" fill="#F3F4F6" stroke="#D1D5DB"/><text x="0" y="112">Text</text><text x="0" y="132">#F3F4F6</text></g>
+    <g transform="translate(510 20)"><rect width="88" height="88" rx="10" fill="#9CA3AF"/><text x="0" y="112">Muted</text><text x="0" y="132">#9CA3AF</text></g>
+    <g transform="translate(608 20)"><rect width="88" height="88" rx="10" fill="#F59E0B"/><text x="0" y="112">Warning</text><text x="0" y="132">#F59E0B</text></g>
+  </g>
+</svg>

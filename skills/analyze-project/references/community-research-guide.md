@@ -54,6 +54,19 @@
 | 作者 Profile | GitHub profile 页面 |
 | NPM/PyPI/Crates.io | 包管理平台查询下载量 |
 
+### Skill/Prompt 项目专属平台
+
+| 平台 | 搜索方式 | 内容类型 |
+|------|----------|----------|
+| Smithery | `site:smithery.ai {skill名}` | Skill 市场页、用户评价 |
+| Shyft | `site:shyft.ai {skill名}` | Skill 收录页 |
+| MCP Market | `site:mcpmarket.com {skill名}` | Skill 市场页 |
+| Claude Marketplaces | `site:claudemarketplaces.com {skill名}` | Skill 收录 + 更新日期 |
+| explainx.ai | `site:explainx.ai {skill名}` | Skill 解释/索引 |
+| CNAGI | `site:cnagi.net {skill名}` | AI 技能库收录 |
+
+> **重要**：Skill 项目可能在 5-10 个市场同时上架，需要逐一检查。不同市场的上架时间、版本、描述可能不同，这些信息有助于判断项目影响力和维护活跃度。
+
 ---
 
 ## 3. 搜索词策略
@@ -83,6 +96,45 @@ site:csdn.net "{项目名}"
 "{项目名}" vs {竞品名}
 "{项目类别}" open source alternatives
 "{项目类别}" 开源 推荐
+```
+
+### Skill/Prompt 项目专属搜索
+
+```
+"{skill名}" smithery OR shyft OR mcpmarket     — Skill 市场覆盖
+"{skill名}" Claude Code skill                   — 通用 Skill 搜索
+"{skill名}" 实测 OR 投稿 OR 使用体验            — 用户实际使用案例
+"{skill名}" fork OR 衍生 OR 二次开发            — 衍生项目
+npx skills add {作者名}                         — 安装方式验证
+```
+
+---
+
+## 3.5 名称混淆检测
+
+搜索过程中，注意识别与目标项目**同名但不同**的其他项目。这在热门命名（如 "NovelForge"、"Aurora"、"Phoenix"）中很常见。
+
+**检测信号**:
+- 搜索结果中出现 2+ 个不同组织/作者的相似名称项目
+- 搜索结果的项目描述与目标项目明显不同（如一个是开源工具，一个是商业软件）
+- 同一关键词在不同平台指向完全不同的项目
+
+**处理策略**:
+1. 在调研报告中**明确标注**名称混淆问题，列出所有同名项目及其区别
+2. 搜索时使用**消歧关键词**: `"{项目名}" + {作者名}` 或 `"{项目名}" + {编程语言/框架}` 来精确匹配
+3. 评估混淆对项目**可发现性的影响**: 是否在搜索引擎/社区中被稀释
+4. 在评估报告中**建议**作者添加区分标识 (如 description 中加 "(开源)" / 副品牌名 / GitHub Topics 优化)
+
+**输出格式**:
+```markdown
+### 名称混淆问题 ⚠️
+"{项目名}" 被 N 个不同项目使用:
+1. {作者A}/{项目名} — {描述} (开源, {许可证})  ← 本项目
+2. {公司B} {项目名} — {描述} (商业, ${价格})
+3. {组织C}/{项目名} — {描述} ({场景})
+
+影响: {评估对搜索引擎曝光/社区讨论的影响}
+建议: {消歧建议}
 ```
 
 ---
@@ -135,3 +187,24 @@ site:csdn.net "{项目名}"
 3. **用户反馈摘要** — 正面/负面/建议分类
 4. **竞品对比表** — 多维度对比
 5. **关键发现** — 3-5 条最重要的洞察
+6. **数据来源统计** — 按类别统计来源数量 (见下方模板)
+
+### 数据来源统计模板
+
+```markdown
+| 类别 | 来源数 | 平台 |
+|------|--------|------|
+| GitHub 数据 | N | 仓库、Issues、Releases、Contributors、Trendshift |
+| 中文平台 | N+ | 知乎(N)、CSDN(N)、掘金(N)、Linux.do(N)、... |
+| 英文平台 | N | Reddit(N)、HN(N)、Medium(N)、... |
+| Skill 市场 | N | ClawHub、Claude Code Marketplaces、... |
+| npm/包管理 | N | npmjs、yarnpkg、... |
+| 竞品 | N | N 开源 + N 商业 |
+| **总计** | **N+** | |
+```
+
+**质量指标**: 来源总数是调研深度的量化度量。
+- < 10 来源: ⚠️ 调研偏浅，建议补充
+- 10-25 来源: ✅ 基本充分
+- 25-50 来源: ✅✅ 深入调研
+- > 50 来源: ✅✅✅ 全面覆盖
