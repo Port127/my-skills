@@ -1,5 +1,5 @@
 ---
-name: jarvis-design-system-guide
+name: skill-with-rich-files
 description: Review and explain web interfaces using the bundled Jarvis design references.
 allowed-tools: Read, Grep, Glob
 ---
